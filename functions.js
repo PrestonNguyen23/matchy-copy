@@ -12,25 +12,63 @@
 //////////////////////////////////////////////////////////////////////
 // Step 1 - Search ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+function search(animals, name) {
+    for (let animal of animals) {
+        if (animal.name === name) {
+            return animal;
+        }
+    }
+    return null;
+}
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 2 - Replace //////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+function replace(animals, name, replacement) {
+    for (let i = 0; i < animals.length; i++) {
+        if (animals[i].name === name) {
+            animals[i] = replacement;
+            return;
+        }
+    }
+}
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 3 - Remove ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+function remove(animals, name) {
+    for (let i = 0; i < animals.length; i++) {
+        if (animals[i].name === name) {
+            animals.splice(i, 1);
+            return;
+        }
+    }
+}
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
+function add(animals, animal) {
+    // Check if the animal object has 'name' and 'species' properties with lengths greater than 0
+    if (!animal.name || animal.name.length === 0 || !animal.species || animal.species.length === 0) {
+        console.error("Animal object must have 'name' and 'species' properties with lengths greater than 0.");
+        return;
+    }
 
+    // Check if the animal object has a unique name
+    for (let existingAnimal of animals) {
+        if (existingAnimal.name === animal.name) {
+            console.error("An animal with the same name already exists.");
+            return;
+        }
+    }
+
+    // If all conditions pass, add the new animal object to the animals array
+    animals.push(animal);
+}
 
 
 /**
